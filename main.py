@@ -23,10 +23,10 @@ if __name__ == '__main__':
         else:
             area = battlefield.begin_journey3(area, players_army)
     rounds = the_game.rounds
-    while not the_game.end:
+    if not the_game.end:
         the_game.battle_start(rounds, players_army, enemies_army)
 
-    print("WIN")
+    print("GOOD GAME")
 
 
 

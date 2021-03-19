@@ -49,9 +49,11 @@ class Robots:
     def set_bot(self, number):
         print("There are three types of Robots. Which one would you like?")
         print("Please choose bot number", number)
+        print(" ")
         print("(a) Tank360R: +80 health +5 attack power +50 power level.")
         print("(b) DPS99R: -20 health +30 attack power")
         print("(c) RepairBot: base stats, but can heal a party member +35 health per round, if has enough power_level.")
+        print(" ")
         choice = input("Which one do you choose? Select by pressing the letter of your choice.")
         if choice == "a" or choice == "A" or choice == "(a)" or choice == "(A)":
             self.name = "Tank360R"
@@ -232,8 +234,6 @@ class Game:
                     print("Make sure you're not attacking using a unit with 0 HP, or attacking one with 0 HP.")
                     print("Make sure you're not attacking with 0 power. these will cause a reload of battle screen")
 
-
-
     def attack(self, who, whom):
         p_rannum = random.randint(0, 7)
         e_rannum = random.randint(0, 7)
@@ -253,7 +253,6 @@ class Game:
             print("enemies roll:", e_rannum, "success: 3")
             print(dino1.type, "retaliates, but in his haste misses.")
 
-
     def assemble_enemies(self, race_choice):
         if race_choice == "bots" or race_choice == "robots" or race_choice == "Robots" or race_choice == "ROBOTS":
             dinosaurs = []
@@ -271,6 +270,7 @@ class Game:
             enemies_army.set_members(dinosaurs)
             for members in dinosaurs:
                 print(members.type)
+            print(" ")
             return enemies_army
 
         elif race_choice == "dinosaurs" or race_choice == "DINOSAURS" or race_choice == "dinos" or race_choice == "Dinosaurs":
@@ -289,7 +289,8 @@ class Game:
             enemies_army.set_unit(bots)
             for units in enemies_army.fleet:
                 print(units.name)
-        return enemies_army
+            print(" ")
+            return enemies_army
 
 
 class Herd:
@@ -320,7 +321,10 @@ class BotBattlefield:
     def begin_journey(self, area, players_army):
         print(self.area1)
         if area == self.area1:
-            print("type look and check your surroundings, or continue east by typing e")
+            print(" ")
+            print("type look and check your surroundings on your journey, or just continue east by typing: e  ")
+            print(" ")
+            print("The voice of your commander echoes over your head-set, GET MOVING!!")
             action1 = input(" ")
             if action1 == "look" or action1 == "l":
                 print("There's a giant bone barely sticking out of a pool of tar here...")
