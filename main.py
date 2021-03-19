@@ -1,4 +1,4 @@
-from classes import Dinosaurs, Robots, Game, Herd, Fleet, BotBattlefield, DinoBattlefield, Weapon
+from classZ import Dinosaurs, Robots, Game, Herd, Fleet, BotBattlefield, DinoBattlefield, Weapon
 
 if __name__ == '__main__':
 

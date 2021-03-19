@@ -4,7 +4,7 @@ import random
 class Dinosaurs:
     def __init__(self):
         self.type = ''
-        self.health = 100
+        self.health = 50
         self.energy = 100
         self.attack_power = 10
 
@@ -16,7 +16,7 @@ class Dinosaurs:
         choice = input("Which one do you choose?")
         if choice == "a" or choice == "A" or choice == "(a)" or choice == "(B)":
             self.type = "Triceratops"
-            self.health += 50
+            self.health += 30
         elif choice == "b" or choice == "B" or choice == "(B)" or choice == "(b)":
             self.type = "T-Rex"
             self.health -= 20
@@ -41,7 +41,7 @@ class Dinosaurs:
 class Robots:
     def __init__(self):
         self.name = ''
-        self.health = 50
+        self.health = 30
         self.power_level = 100
         self.weapon = ''
         self.attack_power = 10
@@ -55,7 +55,7 @@ class Robots:
         choice = input("Which one do you choose? Select by pressing the letter of your choice.")
         if choice == "a" or choice == "A" or choice == "(a)" or choice == "(A)":
             self.name = "Tank360R"
-            self.health += 80
+            self.health += 40
             self.attack_power += 5
             self.power_level += 50
             self.weapon = "Sword and shield"
@@ -164,94 +164,86 @@ class Game:
             dino1 = enemies_army.herd[0]
             dino2 = enemies_army.herd[1]
             dino3 = enemies_army.herd[2]
-            print("Choose WHO to attack and WITH WHOM you will attack. Ex. aa for", robo1.name, "to attack", dino1.type)
-            print("or, ab would have", "a:", dino1.type, "be attacked by", "b:", robo2.name, "Just remember, WHO WHOM")
+            print("Choose WHO to attack and WITH WHOM you will attack. You must roll over your success to succeed a hit")
+            print("Example. WHO: a = ", dino1.type, "WHOM: a =", robo1.name)
+            print(" ")
             while robo1.health > 1 and robo2.health > 1 and robo3.health > 1 or dino1.health > 1 and dino2.health > 1 and dino3.health > 1:
                 print("______________________Round:", rounds, "___FIGHT!!___a_______b_______c________________")
-                print("a: attack", dino1.type, dino1.health, "     |", "name: ", robo1.name, robo2.name, robo3.name)
-                print("b: attack", dino2.type, dino2.health, "            |", "HP:    ", robo1.health, "     ", robo2.health, "     ", robo3.health)
-                print("c: attack", dino3.type, dino3.health, "     |", "energy:", robo1.power_level, "     ", robo2.power_level, "   ", robo3.power_level)
+                print("a: attack", dino1.type, "hp:", dino1.health, "     |", "name: ", robo1.name, robo2.name, robo3.name)
+                print("b: attack", dino2.type, "hp:", dino2.health, "            |", "HP:    ", robo1.health, "     ", robo2.health, "     ", robo3.health)
+                print("c: attack", dino3.type, "hp:", dino3.health, "      |", "energy:", robo1.power_level, "     ", robo2.power_level, "   ", robo3.power_level)
                 print("e: rest: regain energy________________________________________________________________")
-                kill = input(" ")
-                p_rannum = random.randint(0, 7)
-                e_rannum = random.randint(0, 7)
+                print(" ")
+                kill = input("Who do you want to attack?:  ")
+                fighter = input ("With whom do you want to attack with?:  ")
                 rounds += 1
-                if kill == "aa" and robo1.health > 0 and dino1.health > 0:
-                    print("roll:", p_rannum, "success: 3")
-                    if p_rannum > 2 and robo1.power_level > 0:
-                        print(robo1.name, "attacks", dino1.type, "with his", robo1.weapon, "dealing", robo1.attack_power, "damage!")
-                        dino1.health -= robo1.attack_power
-                        robo1.power_level -= 10
+                if kill == "a":
+                    if dino1.type == "DEAD":
+                        print("Attack someone else, this character is dead.")
                     else:
-                        print(robo1.name, "attacks, but misses", dino1.type)
-                    if e_rannum > 2 and dino1.energy > 0:
-                        print("enemies roll:", e_rannum, "success: 3")
-                        print(dino1.type, "Rams you in self-defense! You receive,", dino1.attack_power, "damage!")
-                        robo1.health -= dino1.attack_power
-                        dino1.energy -= 10
+                        who = dino1
+                if fighter == "a":
+                    if robo1.name == "DEAD":
+                        print("Attack with someone else, this character is dead.")
                     else:
-                        print(dino1.type, " energy: ", dino1.energy)
-                        print("enemies roll:", e_rannum, "success: 3")
-                        print(dino1.type, "retaliates, but in his haste misses.")
-                elif kill == "ab":
-                    print("roll:", p_rannum, "success: 3")
-                    if p_rannum > 2 and robo2.power_level > 0:
-                        print(robo2.name, "attacks", dino1.type, "with his", robo2.weapon, "dealing", robo2.attack_power, "damage!")
-                        dino1.health -= robo2.attack_power
-                        robo2.power_level -= 10
+                        whom = robo1
+                if kill == "b":
+                    if dino2.type == "DEAD":
+                        print("Attack someone else, this character is dead.")
                     else:
-                        print(robo2.name, "attacks, but misses", dino1.type)
-                    if e_rannum > 2 and dino1.energy > 0:
-                        print("enemies roll:", e_rannum, "success: 3")
-                        print(dino1.type, "Rams you in self-defense! You receive,", dino1.attack_power, "damage!")
-                        robo2.health -= dino1.attack_power
-                        dino1.energy -= 10
+                        who = dino2
+                if fighter == "b":
+                    if robo2.name == "DEAD":
+                        print("Attack with someone else, this character is dead.")
                     else:
-                        print(dino1.type, " energy: ", dino1.energy)
-                        print("enemies roll:", e_rannum, "success: 3")
-                        print(dino1.type, "retaliates, but in his haste misses.")
-                elif kill == "ac":
-                    if p_rannum > 2 and robo3.power_level > 0:
-                        print(robo3.name, "attacks", dino1.type, "with his", robo3.weapon, "dealing", robo3.attack_power, "damage!")
-                        dino1.health -= robo3.attack_power
-                        robo2.power_level -= 10
-                        print(dino1.type, "is stunned and cannot retaliate!")
-                    elif p_rannum < 3 and dino1.type.energy > 0:
-                        print(robo2.name, "attacks, but misses", dino1.type)
-                        print("enemies roll:", e_rannum, "success: 3")
-                        print(dino1.type, "Rams you in self-defense! You receive,", dino1.attack_power, "damage!")
-                        robo2.health -= dino1.attack_power
-                        dino1.energy -= 10
-                    else:
-                        print(dino1.type, " energy: ", dino1.energy)
-                        print(dino1.type, "is too tired to retaliate.")
+                        whom = robo2
 
 
-                else:
-                    print("Remember to type together WHOWHOM, ex. aa")
-                    print("Make sure you're not attacking using a unit with 0 HP, or attacking one with 0 HP.")
-                    print("Make sure you're not attacking with 0 power. these will cause a reload of battle screen")
+                self.attack(who, whom)
+
 
 
 
     def attack(self, who, whom):
         p_rannum = random.randint(0, 7)
         e_rannum = random.randint(0, 7)
-        if p_rannum > 2 and robo1.power_level > 0:
-            print(robo1.name, "attacks", dino1.type, "with his", robo1.weapon, "dealing", robo1.attack_power, "damage!")
-            dino1.health -= robo1.attack_power
-            robo1.power_level -= 10
+        if p_rannum > 2 and whom.power_level > 0 and whom.name != "DEAD":
+            print(" ")
+            print("[roll:", p_rannum, "success 3]")
+            print(whom.name, "attacks", who.type, "with his", whom.weapon, "dealing", whom.attack_power, "damage!")
+            who.health -= whom.attack_power
+            whom.power_level -= 10
+        elif p_rannum < 3 and whom.name != "DEAD" and whom.power_level > 0:
+            print(" ")
+            print("[roll:", p_rannum, "success 3]")
+            print(whom.name, "attacks, but misses", who.type)
+            whom.power_level -= 10
         else:
-            print(robo1.name, "attacks, but misses", dino1.type)
-        if e_rannum > 2 and dino1.energy > 0:
-            print("enemies roll:", e_rannum, "success: 3")
-            print(dino1.type, "Rams you in self-defense! You receive,", dino1.attack_power, "damage!")
-            robo1.health -= dino1.attack_power
-            dino1.energy -= 10
+            print(" ")
+            print("You are either dead, or out of energy.")
+        if e_rannum > 2 and who.energy > 0 and who.type != "DEAD":
+            print(" ")
+            print("[enemies roll:", e_rannum, "success: 3]")
+            print(who.type, "attacks you in self-defense! You receive,", who.attack_power, "damage!")
+            whom.health -= whom.attack_power
+            who.energy -= 10
+        elif e_rannum < 3 and who.energy > 0 and who.type != "DEAD":
+            print(" ")
+            print("[enemies roll:", e_rannum, "success: 3]")
+            print(who.type, "retaliates, but in his haste misses.")
+            who.energy -= 10
         else:
-            print(dino1.type, " energy: ", dino1.energy)
-            print("enemies roll:", e_rannum, "success: 3")
-            print(dino1.type, "retaliates, but in his haste misses.")
+            print(" ")
+            print("This enemy is unable to retaliate.", "hp: ", who.health, " energy: ", who.energy)
+            print("The enemy's group member siezes upon the opportunity and strikes!", whom.name, "receives 10 damage!")
+            whom.health -= 10
+
+        if who.health < 1:
+            who.type = "DEAD"
+            who.attack_power = 0
+        if whom.health < 1:
+            whom.name = "DEAD"
+            who.attack_power = 0
 
 
     def assemble_enemies(self, race_choice):
