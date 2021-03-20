@@ -1,4 +1,4 @@
-from classZ import Dinosaurs, Robots, Game, Herd, Fleet, BotBattlefield, DinoBattlefield, Weapon
+from classes import Dinosaurs, Robots, Game, Herd, Fleet, BotBattlefield, DinoBattlefield, Weapon
 
 if __name__ == '__main__':
 
@@ -8,6 +8,11 @@ if __name__ == '__main__':
         players_army = the_game.assemble_army(race_choice)
         enemies_army = the_game.assemble_enemies(race_choice)
         battlefield = DinoBattlefield()
+        battlefield.area1
+        battlefield.begin_dino_journey()
+        rounds = the_game.rounds
+        the_game.battle_start_for_dinosaurs(rounds, players_army, enemies_army)
+
     elif the_game.player_race == "Robots":
         players_army = the_game.assemble_army(race_choice)
         enemies_army = the_game.assemble_enemies(race_choice)
@@ -23,7 +28,7 @@ if __name__ == '__main__':
         else:
             area = battlefield.begin_journey3(area, players_army)
     rounds = the_game.rounds
-    if not the_game.end:
+    if not the_game.end and players_army.race == "Robots":
         the_game.battle_start(rounds, players_army, enemies_army)
 
     print("GOOD GAME")

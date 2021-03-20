@@ -4,9 +4,11 @@ import random
 class Dinosaurs:
     def __init__(self):
         self.type = ''
-        self.health = 115
-        self.energy = 100
-        self.attack_power = 11
+        self.health = 80
+        self.energy = 250
+        self.attack_power = 15
+        self.attack1 = ""
+        self.attack2 = ""
 
     def set_dino(self, number):
         print("There are three types of Dinosaurs. Which one would you like?")
@@ -18,14 +20,20 @@ class Dinosaurs:
         if choice == "a" or choice == "A" or choice == "(a)" or choice == "(B)":
             self.type = "Triceratops"
             self.health += 30
+            self.attack1 = "Three horn jab"
+            self.attack2 = "Cranial slam"
         elif choice == "b" or choice == "B" or choice == "(B)" or choice == "(b)":
             self.type = "T-Rex"
             self.health -= 10
-            self.attack_power += 15
+            self.attack_power += 25
+            self.attack1 = "Bite"
+            self.attack2 = "Leaping foot-claw slash"
         elif choice == "c" or choice == "C" or choice == "(C)" or choice == "(c)":
             self.type = "Pterodactyl"
             self.health += 20
-            self.attack_power += 10
+            self.attack_power += 15
+            self.attack1 = "eye peck"
+            self.attack2 = "free-falling beak stab"
 
     def enemy_dino(self, abc):
         if abc == "a" or abc == "A" or abc == "(a)" or abc == "(B)":
@@ -39,13 +47,11 @@ class Dinosaurs:
             self.type = "Pterodactyl"
 
 
-
-
 class Robots:
     def __init__(self):
         self.name = ''
         self.health = 50
-        self.power_level = 100
+        self.power_level = 250
         self.weapon = ''
         self.attack_power = 10
 
@@ -85,11 +91,13 @@ class Robots:
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
             self.name = "DPS99R"
             self.health -= 20
-            self.attack_power += 30
+            self.attack_power += 35
             self.weapon = "Rail-gun"
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
             self.name = "RepairBot"
             self.weapon = "monkey wrench"
+            self.health += 20
+            self.attack_power += 5
         else:
             self.name = "basic bot"
 
@@ -183,7 +191,7 @@ class Game:
             print("Choose WHO to attack and WITH WHOM you will attack. You must roll over your success to succeed a hit")
             print("Example. WHO: a = ", dino1.type, "and WHOM: a =", robo1.name)
             print(" ")
-            while robo1.health > 1 or robo2.health > 1 or robo3.health > 1 and dino1.health > 1 or dino2.health > 1 or dino3.health > 1:
+            while robo1.health > 0 or robo2.health > 0 or robo3.health > 0 and dino1.health > 0 or dino2.health > 0 or dino3.health > 0:
                 if robo1.health < 1 and robo2.health < 1 and robo3.health < 1:
                     print(" ")
                     print("The Dinosaurs destroy your machines, and having no mor resources for battle..")
@@ -197,10 +205,12 @@ class Game:
                 elif dino1.health < 1 and dino2.health < 1 and dino3.health < 1:
                     print(" ")
                     print("OUTSTANDING!! YOU WIN!! Despite the great disadvantage of size... your race overcame...")
-                    print("and rewrote history, which isn't true today, thus you are from an alternate reality.")
-                    print("and the reality in which your story plays, is merely a glimpse into what could have been.")
-                    print("If your reality, was their reality, but alas...")
-                    print("What that alternate reality in the future this reality calls earth in english, you now call home.")
+                    print(
+                        "and rewrote history, which isn't true in my reality, thus you are from an alternate reality.")
+                    print("and the reality in which your story played, is merely a glimpse into what could have been.")
+                    print("If your reality, was our reality, but alas...")
+                    print(
+                        "What your alternate reality in the future; this reality calls earth in english, you now call home.")
                     return True
                 print("______________________Round:", rounds, "___FIGHT!!_____(a)_______(b)_______(c)________________")
                 print("a: attack", dino1.type, "hp:", dino1.health, "     |", "name: ", robo1.name, robo2.name, robo3.name)
@@ -277,10 +287,161 @@ class Game:
 
         if who.health < 1:
             who.type = "DEAD"
-            who.attack_power = 0
         if whom.health < 1:
             whom.name = "DEAD"
-            who.attack_power = 0
+
+    def battle_start_for_dinosaurs(self, rounds, players_army, enemies_army):
+            print("Time to ENGAGE")
+            dino1 = players_army.herd[0]
+            dino2 = players_army.herd[1]
+            dino3 = players_army.herd[2]
+            robo1 = enemies_army.fleet[0]
+            robo2 = enemies_army.fleet[1]
+            robo3 = enemies_army.fleet[2]
+            print("Choose WHO to attack and WITH WHOM you will attack. You must roll over your success to succeed a hit")
+            print("Example. WHO: a = ", dino1.type, "and WHOM: a =", robo1.name)
+            print(" ")
+            while robo1.health > 1 or robo2.health > 1 or robo3.health > 1 and dino1.health > 1 or dino2.health > 1 or dino3.health > 1:
+                if robo1.health < 1 and robo2.health < 1 and robo3.health < 1:
+                    print(" ")
+                    print("The Dinosaurs destroy your machines, and having no mor resources for battle..")
+                    print("The Commander turns the ship away from earth, and sets off to another planet to make home.")
+                    print("One with far less ferocious beasts...")
+                    print("Perhaps if your race wasn't only 1/2 foot tall, your 10ft gundam-style robots could have stood a chance.")
+                    print("YOU LOSE~")
+                    return True
+
+                elif dino1.health < 1 and dino2.health < 1 and dino3.health < 1:
+                    print(" ")
+                    print("OUTSTANDING!! YOU WIN!! Despite the great disadvantage of size... your race overcame...")
+                    print(
+                        "and rewrote history, which isn't true in my reality, thus you are from an alternate reality.")
+                    print("and the reality in which your story played, is merely a glimpse into what could have been.")
+                    print("If your reality, was our reality, but alas...")
+                    print(
+                        "What your alternate reality in the future; this reality calls earth in english, you now call home.")
+                    return True
+                print("______________________Round:", rounds, "___FIGHT!!_________________________________________")
+                print("a: attack", dino1.type, "hp:", dino1.health, "     |", "name: ", "(a)", robo1.name, "(b)", robo2.name,
+                      "c", robo3.name)
+                print("b: attack", dino2.type, "hp:", dino2.health, "            |", "HP:    ", robo1.health, "     ",
+                      robo2.health, "     ", robo3.health)
+                print("c: attack", dino3.type, "hp:", dino3.health, "     |", "energy:", robo1.power_level, "     ",
+                      robo2.power_level, "   ", robo3.power_level)
+                print("_____________________________________________________________________________________")
+                print(" ")
+                enemy = input("Who do you to attack with?:")
+                fighter = input("Whom do you want to attack??:")
+                rounds += 1
+                if enemy == "a":
+                    who = dino1
+                if fighter == "a":
+                    whom = robo1
+                if enemy == "b":
+                    who = dino2
+                if fighter == "b":
+                    whom = robo2
+                if enemy == "c":
+                    who = dino3
+                if fighter == "c":
+                    whom = robo3
+
+                self.mark_death_dinos(whom, who)
+
+    def mark_death_dinos(self, whom, who):
+        if who.type == "DEAD" or whom.name == "DEAD":
+            print("Sorry, but the dead cannot fight")
+        else:
+            if whom.name == "RepairBot" and who.health < 150:
+                whom.health += 15
+                print(whom.name, "repairs himself regaining +15 health")
+            self.attack_dinos(who, whom)
+
+    def attack_dinos(self, whom, who):
+        p_rannum = random.randint(0, 7)
+        e_rannum = random.randint(0, 7)
+        if p_rannum > 2 and whom.energy > 0:
+            print("a :", whom.attack1)
+            print("b :", whom.attack2)
+            print("Which attack do you want to use?")
+            attack_choice = input(" ")
+            if attack_choice == "a" or attack_choice == "A":
+                if whom.type == "T-Rex":
+                    print(whom.type, "attacks", who.name, "with", whom.type, "and crushes,", who.name, "with his jaws!")
+                    print("dealing", whom.attack_power, "damage to", who.name)
+                    who.health -= whom.attack_power
+                    whom.energy - 10
+                if whom.type == "Triceratops":
+                    tri_rannum = random.randint(0, 7)
+                    if tri_rannum > 3:
+                        print(whom.type, "charges in and gouges", who.name, "with a", whom.attack1, "CRITICAL HIT! 10x3 damage!")
+                        who.health -= (whom.attack_power * 2)
+                    else:
+                        print(whom.type, "charges in and gouges", who.name, "with a", whom.attack1, "dealing 5 damage 5 damage 5 damage ")
+                        who.health -= whom.attack_power
+                        whom.energy -= 10
+                if whom.type == "Pterodactyl":
+                    print(whom.type, "gouges at the eye senors of", who.name, "giving you a chance for him to re-roll his retaliation attack!!")
+                    print(" ")
+                    print(who.name,"'s retaliate attack is currently [roll:", e_rannum, "success 3]")
+                    r_roll = input("Do you want to roll for a chance to make enemy re-roll? y or n ")
+                    if r_roll == "Y" or r_roll == "y":
+                        ptero_rannum = random.randint(0, 7)
+                        print("Your attempt: [roll : ", ptero_rannum, "success: 4]")
+                        if ptero_rannum > 3:
+                            e_rannum = random.randint(0, 7)
+                            print("his new roll is:  [roll:", e_rannum, "success 3]")
+                            print(' ')
+                            print("*CRITICAL STRIKE* your attack dealt", whom.attack_power, "damage")
+                            who.health -= whom.attack_power
+                            whom.energy -= 10
+                        else:
+                            print("Your attack deals", (whom.attack_power - 15), "damage.")
+                            who.health -= (whom.attack_power - 15)
+                            whom.energy -= 10
+                    else:
+                        print("Your attack deals", (whom.attack_power -15), "damage.")
+                        who.health -= (whom.attack_power -15)
+                        whom.energy -= 10
+            if attack_choice == "b" or attack_choice == "B":
+                if whom.type == "T-Rex":
+                    print(whom.type, "leaps into the air on", who.name, "and", whom.type, "and slashes,", who.name, "with his feet_claws.")
+                    print("dealing,", whom.attack_power, "damage to", who.name)
+                    who.health -= whom.attack_power
+                    whom.energy - 10
+                if whom.type == "Triceratops":
+                    print(whom.type, "slams", who.name, "with a", whom.attack1, "dealing", whom.attack_power, "damage.")
+                    who.health -= whom.attack_power
+                    whom.energy -= 10
+                if whom.type == "Pterodactyl":
+                    print(whom.type, "flies high up into the sky, then folds his wings and free-falls quickly to the earth stabbing", who.name, "with his beak!")
+                    print("dealing", whom.attack_power +5, "damage")
+                    who.health -= (whom.attack_power +5)
+                    whom.energy -= 10
+        if p_rannum < 3 and whom.energy > 0:
+            print(" ")
+            print("[roll:", p_rannum, "success 3]")
+            print(whom.type, "attacks, but misses", who.name)
+            whom.energy -= 10
+        if e_rannum > 2 and who.power_level > 0:
+            print(" ")
+            print("[enemies roll:", e_rannum, "success: 3]")
+            print(who.name, "attacks you in self-defense! You receive,", who.attack_power, "damage!")
+            whom.health -= who.attack_power
+            who.power_level -= 10
+        elif e_rannum < 3 and who.power_level > 0:
+            print(" ")
+            print("[enemies roll:", e_rannum, "success: 3]")
+            print(who.name, "retaliates, but in his haste misses.")
+            who.power_level -= 10
+        else:
+            print(" ")
+            print("the enemy is out of energy")
+        if who.health < 1:
+            who.name = "DEAD"
+        if whom.health < 1:
+            whom.type = "DEAD"
+
 
     def assemble_enemies(self, race_choice):
         if race_choice == "bots" or race_choice == "robots" or race_choice == "Robots" or race_choice == "ROBOTS":
@@ -341,6 +502,7 @@ class Herd:
 
 class Fleet:
     def __init__(self):
+        self.race = "Robots"
         self.fleet = []
 
     def set_unit(self, units):
@@ -411,21 +573,21 @@ class BotBattlefield:
                     if bot_choice == "a":
                         robo1.attack_power += 15
                         robo1.power_level += 100
-                        robo1.health += 100
+                        robo1.health += 50
                         print(robo1.name, "feels a surge of power!")
                         print("You better get moving! Commander says hurry up!")
                         return self.area3
                     if bot_choice == "b":
                         robo2.attack_power += 15
                         robo2.power_level += 100
-                        robo2.health += 100
+                        robo2.health += 50
                         print(robo2.name, "feels a surge of power!")
                         print("You better get moving! Commander says hurry up!")
                         return self.area3
                     if bot_choice == "c":
                         robo3.attack_power += 15
                         robo3.power_level += 100
-                        robo3.health += 100
+                        robo3.health += 50
                         print(robo3.name, "feels a surge of power!")
                         print("You better get moving! Commander says hurry up!")
                         return self.area3
@@ -456,10 +618,12 @@ class BotBattlefield:
 
 class DinoBattlefield:
     def __init__(self):
-        self.area1 = "You stand at the eastern end of a great valley, enemies to the far west."
-        self.area2 = "You to the center of the valley, enemies in the distance to the west."
-        self.area3 = "You are past the halfway point, enemies in sight to the west."
+        self.area1 = "You stand at the far east of the valley, enjoying leisurely time"
 
+    def begin_dino_journey(self):
+        print("The T-Rex munches on some small sheep, the Triceratops unafraid, with the Pterodactyl flying high in the sky.")
+        print("All the sudden, robots from the west come toward you and begin to battle!")
+        return "battle"
 
 class Weapon:
     def __init__(self):
