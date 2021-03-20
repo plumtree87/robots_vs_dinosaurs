@@ -8,8 +8,8 @@ if __name__ == '__main__':
         players_army = the_game.assemble_army(race_choice)
         enemies_army = the_game.assemble_enemies(race_choice)
         battlefield = DinoBattlefield()
-        battlefield.area1
-        battlefield.begin_dino_journey()
+        area = battlefield.area1
+        battlefield.begin_dino_journey(area)
         rounds = the_game.rounds
         the_game.battle_start_for_dinosaurs(rounds, players_army, enemies_army)
 
