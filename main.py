@@ -1,4 +1,4 @@
-from classes import Dinosaurs, Robots, Game, Herd, Fleet, BotBattlefield, DinoBattlefield, Weapon
+from classes import Game, BotBattlefield, DinoBattlefield
 
 if __name__ == '__main__':
 
@@ -19,19 +19,44 @@ if __name__ == '__main__':
         battlefield = BotBattlefield()
 
         area = battlefield.area1
-        area = battlefield.begin_journey(area, players_army)
-        area = battlefield.begin_journey2(area, players_army)
-        if area == battlefield.area1a:
-            area = battlefield.begin_journey(area, players_army)
-            area = battlefield.begin_journey2(area, players_army)
-            area = battlefield.begin_journey3(area, players_army)
-        else:
-            area = battlefield.begin_journey3(area, players_army)
-    rounds = the_game.rounds
-    if not the_game.end and players_army.race == "Robots":
-        the_game.battle_start(rounds, players_army, enemies_army)
+        while area == battlefield.area1 or area == battlefield.area1a or area == battlefield.area2 or area == battlefield.area2a:
+            if area == battlefield.area1:
+                area = battlefield.begin_journey(area, players_army)
 
-    print("GOOD GAME")
+            if area == battlefield.area1a:
+                area = battlefield.begin_journey(area, players_army)
+            if area == battlefield.area2:
+                area = battlefield.begin_journey2(area, players_army)
+            if area == battlefield.area2a:
+                area = battlefield.begin_journey2(area, players_army)
+            if area == battlefield.area3:
+                break
+        area = battlefield.begin_journey3(area, players_army)
+
+        rounds = the_game.rounds
+        next_move = [False, battlefield.area3]
+        while not the_game.end and players_army.race == "Robots":
+            next_move = the_game.battle_start(rounds, players_army, enemies_army)
+            area = next_move[1]
+            while area == battlefield.area1 or area == battlefield.area1a or area == battlefield.area2 or area == battlefield.area2a or next_move[1] == battlefield.area2b or area == "battle":
+                if area == battlefield.area1:
+                    area = battlefield.begin_journey(area, players_army)
+
+                if area == battlefield.area1a:
+                    area = battlefield.begin_journey(area, players_army)
+                if area == battlefield.area2:
+                    area = battlefield.begin_journey2(area, players_army)
+                if area == battlefield.area2a:
+                    area = battlefield.begin_journey2(area, players_army)
+                if area == battlefield.area2b:
+                    area = battlefield.begin_journey2(area, players_army)
+                if area == battlefield.area3:
+                    area = battlefield.begin_journey3(area, players_army)
+                if area == "battle":
+                    break
+
+
+        print("GOOD GAME")
 
 
 
