@@ -57,6 +57,8 @@ if __name__ == '__main__':
                     area = battlefield.begin_journey2(area, players_army)
                 if area == battlefield.area3:
                     area = battlefield.begin_journey3(area, players_army)
+                if area == "battle":
+                    break
                 if area == battlefield.area_end:
                     the_game.end = True
                     break

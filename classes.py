@@ -50,13 +50,14 @@ class Dinosaurs:
             self.energy += 200
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
             self.type = "___T-Rex___"
-            self.health -= 20
+            self.health += 15
             self.attack_power += 15
             self.energy += 200
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
             self.type = "Pterodactyl"
-            self.attack_power += 5
+            self.attack_power += 10
             self.energy += 200
+            self.health += 20
 
 
 class Robots:
@@ -97,7 +98,8 @@ class Robots:
                 else:
                     wep_change = input("Would you like to use the greatsword? y or n ")
             if wep_change == "y":
-                self.weapon = "greatsword"
+                weapon = Weapon().weapon_tank_list[2]
+                self.weapon = weapon
                 print(self.name, "now uses a greatsword")
                 self.health -= 5
                 self.attack_power += 5
@@ -151,7 +153,8 @@ class Robots:
                 else:
                     wep_choice = input("Would you like to change to hammer? y or n ")
             if wep_choice == "y":
-                self.weapon = "hammer"
+                weapon = Weapon().weapon_repair_list[1]
+                self.weapon = weapon
                 self.attack_power += 10
                 print(" ")
                 print(self.name, "equips the", self.weapon)
@@ -273,9 +276,9 @@ class Game:
             while dino1.health > 1 or dino2.health > 1 or dino3.health > 1 or robo1.health > 1 or robo2.health > 1 or robo3.health > 1:
                 print(" ")
                 print("______________________Round:", rounds, "___FIGHT!!_______________________________________")
-                print("a: attack", dino1.type, " HP:", dino1.health, "      |", "(a) name:", robo1.name, "HP:", robo1.health, "PL:", robo1.power_level)
-                print("b: attack", dino2.type, " HP:", dino2.health, "      |", "(b) name:", robo2.name, "HP:", robo2.health, "PL:", robo1.power_level)
-                print("c: attack", dino3.type, " HP:", dino3.health, "      |", "(c) name:", robo3.name, "HP:", robo3.health, "PL:", robo3.power_level)
+                print("a: attack", dino1.type, " HP:", dino1.health, "     |", "(a) name:", robo1.name, " HP:", robo1.health, " PL:", robo1.power_level)
+                print("b: attack", dino2.type, " HP:", dino2.health, "      |", "(b) name:", robo2.name, " HP:", robo2.health, " PL:", robo1.power_level)
+                print("c: attack", dino3.type, " HP:", dino3.health, "     |", "(c) name:", robo3.name, " HP:", robo3.health, " PL:", robo3.power_level)
                 print("f: Flee:                                                                                      ")
                 print("________^ THE ENEMY DINOSAURS ^_____________________^ YOUR ROBOTS ^_____________________")
                 print(" ")
@@ -374,7 +377,7 @@ class Game:
         if e_rannum > 2 and who.energy > 0:
             print(" ")
             print("[enemies roll:", e_rannum, "success: 3]")
-            print(who.type, "attacks you in self-defense! You receive,", who.attack_power, "damage!")
+            print(who.type, "retaliates against you in self-defense!", "You receive,", who.attack_power, "damage!")
             whom.health -= who.attack_power
             who.energy -= 10
         elif e_rannum < 3 and who.energy > 0:
@@ -949,7 +952,8 @@ class Weapon:
     def __init__(self):
         self.weapon = ""
         self.weapon_list = ["laser", "dino_blaster03", "gatling gun"]
-        self.weapon_tank_list = ["giant bone maul"]
+        self.weapon_tank_list = ["giant bone maul", "sword and shield", "greatsword"]
+        self.weapon_repair_list = ["monkey wrench", "hammer"]
 
     def equip_club(self, players_army):
         for units in players_army.fleet:
@@ -960,7 +964,6 @@ class Weapon:
                     weapon = Weapon().weapon_tank_list[0]
                     units.weapon = weapon
                     units.attack_power += 5
-                    self.weapon = "giant bone maul"
                     print("You equip the", units.weapon, "with _Tank360_R_. His attack power is now:",
                           units.attack_power, "+5")
                     break
