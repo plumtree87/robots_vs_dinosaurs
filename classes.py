@@ -46,13 +46,17 @@ class Dinosaurs:
     def enemy_dino(self, abc):
         if abc == "a" or abc == "A" or abc == "(a)" or abc == "(B)":
             self.type = "Triceratops"
-            self.health += 70
+            self.health += 100
+            self.energy += 200
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
             self.type = "T-Rex"
             self.health -= 20
             self.attack_power += 15
+            self.energy += 200
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
             self.type = "Pterodactyl"
+            self.attack_power += 5
+            self.energy += 200
 
 
 class Robots:
@@ -671,7 +675,7 @@ class BotBattlefield:
         if self.area2b == area:
             for units in players_army.fleet:
                 if units.name == "RepairBot":
-                    print("You can repair your robot party for +30 health for the cost of -100 from", units.name, "power_level.")
+                    print("You can repair your robot party for +30 health and +100 power_level for the cost of -100 from", units.name, "power_level.")
                     print("Or, you can use -20 of RepairBot's power_level and the cost of one of your party members lives..")
                     print("And using parts from your sacrificed robot of choice, RepairBot can give the remainder of that sacrificed Bot's")
                     print("attack power, energy and +50 HP to any surviving bot of your choice.")
@@ -687,6 +691,7 @@ class BotBattlefield:
                                 robos.power_level -=20
                         for unit in players_army.fleet:
                             if unit.health > 0 and unit.name != "RepairBot":
+                                print(" ")
                                 print(unit.name)
                                 sacrifice = input("Would you like to sacrifice this bot? y or n")
                                 if sacrifice == "y" or sacrifice == "Y":
@@ -696,7 +701,7 @@ class BotBattlefield:
                                     sacrificer_pl = unit.power_level
                                     break
                                 if sacrifice == "n" or sacrifice == "N":
-                                    break
+                                    continue
                                 while sacrifice != "y" or sacrifice != "n":
                                     if sacrifice == "y":
                                         unit.name = "DEAD"
@@ -705,40 +710,47 @@ class BotBattlefield:
                                         sacrificer_pl = unit.power_level
                                         break
                                     if sacrifice == "n":
-                                        return self.area2a
+                                        continue
                                     else:
                                         sacrifice = input("Would you like to sacrifice this bot? y or n")
                         print("Which bot do you want to re-build to give more power?")
                         for left_overs in players_army.fleet:
                             if left_overs.name != "DEAD":
+                                print(" ")
                                 print(left_overs.name)
                                 re_build = input("Would you like to rebuild this bot? y or n")
                                 if re_build == "y" or sacrifice == "Y":
                                     left_overs.attack_power += sacrificer_ap
                                     left_overs.power_level += sacrificer_pl
                                     left_overs.health += 50
-                                    print(unit.name, "gained,", unit.health, "HP", unit.attack_power, "Attack_Power", unit.power_level, "Power_Level")
+                                    print(left_overs.name, "now has..", left_overs.health, "HP", left_overs.attack_power, "Attack_Power", unit.power_level, "Power_Level")
                                     return self.area2a
                                 if re_build == "n" or re_build == "N":
-                                    pass
+                                    print("If you run out of options, you will just have to continue back to battle.")
+                                    continue
                                 while re_build != "y" or re_build != "Y" or re_build != "N" or re_build != "n":
                                     if re_build == "y" or sacrifice == "Y":
                                         left_overs.attack_power += sacrificer_ap
                                         left_overs.power_level += sacrificer_pl
                                         left_overs.health += 50
-                                        print(unit.name, "gained,", unit.health, "HP", unit.attack_power, "Attack_Power", unit.power_level, "Power_Level")
+                                        print(left_overs.name, "gained,", left_overs.health, "HP", left_overs.attack_power, "Attack_Power", unit.power_level, "Power_Level")
                                         return self.area2a
                                     if re_build == "n" or re_build == "N":
-                                        pass
+                                        print("if you run out of options, you will just have to continue back to battle.")
+                                        continue
                                     else:
                                         re_build = input("Would you like to rebuild this bot? y or n")
-                    if fled == "b" or "C":
+                    if fled == "b" or "B":
                         for members in players_army.fleet:
                             if members.name == "RepairBot":
-                                members.power_level -= 100
+                                if members.power_level < 100:
+                                    print("Sorry, but,", members.name, "doesn't have enough power_level for this... PL: ", members.power_level)
+                                    return self.area2a
+                                else:
+                                    members.power_level -= 200
                         for robots in players_army.fleet:
-
                             robots.health += 30
+                            robots.power_level += 100
                         return self.area2a
                     if fled == "c" or fled == "C":
                         return self.area2a
