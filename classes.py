@@ -112,8 +112,29 @@ class Robots:
             self.attack_power += 35
             self.weapon = "Rail-gun"
             print(" ")
-            print(self.name, "only has the choice of rail-gun for his weapon. ***")
-            print("But, he's added to your fleet now...")
+            print(self.name, "currently uses", self.weapon)
+            weapon = Weapon().weapon_list
+            for guns in weapon:
+                print("Would you like to use", guns, "instead?")
+                swap = input("y or n")
+                if swap == "y":
+                    self.weapon = guns
+                    print(self.name, "now uses", self.weapon)
+                    break
+                if swap == "n":
+                    continue
+                while swap != "y" or "n":
+                    if swap == "y":
+                        self.weapon = guns
+                        print(self.name, "now uses,", self.weapon)
+                        break
+                    if swap == "n":
+                        continue
+                    else:
+                        swap = input("y or n")
+            print(" ")
+            print(self.name, "will use", self.weapon,"for his weapon.")
+            print("he's added to your fleet now...")
             print(" ")
         elif choice == "c" or choice == "C" or choice == "(c)" or choice == "(C)":
             self.name = "RepairBot"
@@ -905,6 +926,7 @@ class DinoBattlefield:
 class Weapon:
     def __init__(self):
         self.weapon = ""
+        self.weapon_list = ["laser", "dino_blaster03", "gatling gun"]
 
     def equip_club(self, players_army):
         for units in players_army.fleet:
