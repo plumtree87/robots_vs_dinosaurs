@@ -15,7 +15,7 @@ class Dinosaurs:
         print("Please choose dino", number)
         print(" ")
         print("(a) Triceratops: +30 health and has attack moves 'Cranial Bash' and 'Tri-Horn Jab' ")
-        print("(b) T-Rex: +25 attack power and -10 health with attack moves 'Bite' and 'Leaping foot-claw slash' ")
+        print("(b) ___T-Rex___: +25 attack power and -10 health with attack moves 'Bite' and 'Leaping foot-claw slash' ")
         print("(c) Pterodactyl: health +5 and +10 attack power with attack moves 'eye peck' which has a chance to make")
         print("enemy retaliation attack re-roll and miss their next attack, and/or has 'free-falling beak stab'")
         print(" ")
@@ -31,7 +31,7 @@ class Dinosaurs:
             self.attack1 = "Three horn jab"
             self.attack2 = "Cranial slam"
         elif choice == "b" or choice == "B" or choice == "(B)" or choice == "(b)":
-            self.type = "T-Rex"
+            self.type = "___T-Rex___"
             self.health -= 10
             self.attack_power += 25
             self.attack1 = "Bite"
@@ -49,7 +49,7 @@ class Dinosaurs:
             self.health += 100
             self.energy += 200
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
-            self.type = "T-Rex"
+            self.type = "___T-Rex___"
             self.health -= 20
             self.attack_power += 15
             self.energy += 200
@@ -71,9 +71,9 @@ class Robots:
         print("There are three types of Robots. Which one would you like?")
         print("Please choose bot number", number)
         print(" ")
-        print("(a) Tank360R: +40 health +5 attack power +50 power level.")
-        print("(b) DPS99R: -15 health +35 attack power")
-        print("(c) RepairBot: +15 health + 15 attack power and gives team +1.5 health per round.")
+        print("(a) _Tank360_R_: +40 health +5 attack power +50 power level.")
+        print("(b) _DPS_9_9_R_: -15 health +35 attack power")
+        print("(c) _Repair_Bot: +15 health + 15 attack power and gives team +1.5 health per round.")
         print(" ")
         choice = input("Which one do you choose? Select by pressing the letter of your choice.")
         while choice != "a" or choice != "b" or choice != "c":
@@ -83,7 +83,7 @@ class Robots:
                 choice = input("Which one do you choose? Select by pressing the letter of your choice. ")
 
         if choice == "a" or choice == "A" or choice == "(a)" or choice == "(A)":
-            self.name = "Tank360R"
+            self.name = "_Tank360_R_"
             self.health += 40
             self.attack_power += 5
             self.power_level += 50
@@ -107,12 +107,12 @@ class Robots:
                 print(self.name, "keeps the", self.weapon)
                 print(" ")
         elif choice == "b" or choice == "B" or choice == "(b)" or choice == "(B)":
-            self.name = "DPS99R"
+            self.name = "_DPS_9_9_R_"
             self.health -= 15
             self.attack_power += 35
             self.weapon = "Rail-gun"
             print(" ")
-            print(self.name, "currently uses", self.weapon)
+            print(self.name, "currently uses", self.weapon, "but has a few options..")
             weapon = Weapon().weapon_list
             for guns in weapon:
                 print("Would you like to use", guns, "instead?")
@@ -123,13 +123,13 @@ class Robots:
                     break
                 if swap == "n":
                     continue
-                while swap != "y" or "n":
+                while swap != "y" or swap != "n":
                     if swap == "y":
                         self.weapon = guns
                         print(self.name, "now uses,", self.weapon)
                         break
                     if swap == "n":
-                        continue
+                        break
                     else:
                         swap = input("y or n")
             print(" ")
@@ -137,13 +137,13 @@ class Robots:
             print("he's added to your fleet now...")
             print(" ")
         elif choice == "c" or choice == "C" or choice == "(c)" or choice == "(C)":
-            self.name = "RepairBot"
+            self.name = "_Repair_Bot"
             self.health += 20
             self.attack_power += 15
             self.weapon = "monkey wrench"
             print(" ")
-            print(self.name, "currently uses", self.weapon, "which heals all party members +1 hp per round.")
-            print("another option would be a hammer, which doesn't allow healing but deals +5 more damage")
+            print(self.name, "currently uses", self.weapon, "which heals all party members +1.5 hp per round.")
+            print("another option would be a hammer, which doesn't allow healing but deals +10 more damage")
             wep_choice = input ("Would you like to change to a hammer?: y :or keep the monkey wrench?: n ")
             while wep_choice != "y" or wep_choice != "n":
                 if wep_choice == "y" or wep_choice == "n":
@@ -152,7 +152,7 @@ class Robots:
                     wep_choice = input("Would you like to change to hammer? y or n ")
             if wep_choice == "y":
                 self.weapon = "hammer"
-                self.attack_power += 5
+                self.attack_power += 10
                 print(" ")
                 print(self.name, "equips the", self.weapon)
                 print(" ")
@@ -163,18 +163,18 @@ class Robots:
 
     def enemy_bot(self, abc):
         if abc == "a" or abc == "A" or abc == "(a)" or abc == "(B)":
-            self.name = "Tank360R"
+            self.name = "_Tank360_R_"
             self.health += 80
             self.attack_power += 5
             self.power_level += 50
             self.weapon = "Sword and shield"
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
-            self.name = "DPS99R"
+            self.name = "_DPS_9_9_R_"
             self.health -= 20
             self.attack_power += 35
             self.weapon = "Rail-gun"
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
-            self.name = "RepairBot"
+            self.name = "_Repair_Bot"
             self.weapon = "monkey wrench"
             self.health += 20
             self.attack_power += 5
@@ -272,11 +272,11 @@ class Game:
             print("You must roll to/over your success to succeed a hit")
             while dino1.health > 1 or dino2.health > 1 or dino3.health > 1 or robo1.health > 1 or robo2.health > 1 or robo3.health > 1:
                 print(" ")
-                print("______________________Round:", rounds, "___FIGHT!!_____(a)_______(b)_______(c)________________")
-                print("a: attack", dino1.type, " HP:", dino1.health, "     |", "name: ", robo1.name, " ", robo2.name, " ", robo3.name)
-                print("b: attack", dino2.type, " HP:", dino2.health, "            |", "HP:    ", robo1.health, "       ", robo2.health, "        ", robo3.health)
-                print("c: attack", dino3.type, " HP:", dino3.health, "      |", "energy:", robo1.power_level, "       ", robo2.power_level, "      ", robo3.power_level)
-                print("e: Flee:                                                                                      ")
+                print("______________________Round:", rounds, "___FIGHT!!_______________________________________")
+                print("a: attack", dino1.type, " HP:", dino1.health, "      |", "(a) name:", robo1.name, "HP:", robo1.health, "PL:", robo1.power_level)
+                print("b: attack", dino2.type, " HP:", dino2.health, "      |", "(b) name:", robo2.name, "HP:", robo2.health, "PL:", robo1.power_level)
+                print("c: attack", dino3.type, " HP:", dino3.health, "      |", "(c) name:", robo3.name, "HP:", robo3.health, "PL:", robo3.power_level)
+                print("f: Flee:                                                                                      ")
                 print("________^ THE ENEMY DINOSAURS ^_____________________^ YOUR ROBOTS ^_____________________")
                 print(" ")
                 while dino1.health > 0 or dino2.health > 0 or dino3.health > 0:
@@ -307,8 +307,8 @@ class Game:
                     elif dino1.health > 0 or dino2.health > 0 or dino3.health > 0:
                         break
                 enemy = input("Which dinosaur do you want to attack?:")
-                while enemy != "a" or enemy != "b" or enemy != "c" or enemy != "e":
-                    if enemy == "e":
+                while enemy != "a" or enemy != "b" or enemy != "c" or enemy != "f":
+                    if enemy == "f":
                         area = BotBattlefield()
                         return [False, area.area2b]
                     if enemy == "a" or enemy == "b" or enemy == "c":
@@ -338,20 +338,20 @@ class Game:
                 self.mark_death(who, whom)
 
     def mark_death(self, who, whom):
-        if who.type == "DEAD" or whom.name == "DEAD":
+        if who.type == "X___DEAD___" or whom.name == "X___DEAD___":
             print("Sorry, but the dead cannot fight")
         else:
 
-            if self.fleet.fleet[0].name == "RepairBot" or self.fleet.fleet[1].name == "RepairBot" or self.fleet.fleet[2].name == "RepairBot" and self.fleet.fleet[0].weapon == "monkey wrench" or self.fleet.fleet[1].weapon == "monkey wrench" or self.fleet.fleet[2].weapon == "monkey wrench":
-                if self.fleet.fleet[0].name != "DEAD":
+            if self.fleet.fleet[0].name == "_Repair_Bot" or self.fleet.fleet[1].name == "_Repair_Bot" or self.fleet.fleet[2].name == "_Repair_Bot" and self.fleet.fleet[0].weapon == "monkey wrench" or self.fleet.fleet[1].weapon == "monkey wrench" or self.fleet.fleet[2].weapon == "monkey wrench":
+                if self.fleet.fleet[0].name != "X___DEAD___":
                     self.fleet.fleet[0].health += 1.5
-                    print("RepairBot repairs, ", self.fleet.fleet[0].name)
-                if self.fleet.fleet[1].name != "DEAD":
+                    print("_Repair_Bot repairs, ", self.fleet.fleet[0].name)
+                if self.fleet.fleet[1].name != "X___DEAD___":
                     self.fleet.fleet[1].health += 1.5
-                    print("RepairBot repairs: ", self.fleet.fleet[1].name)
-                if self.fleet.fleet[2].name != "DEAD":
+                    print("_Repair_Bot repairs: ", self.fleet.fleet[1].name)
+                if self.fleet.fleet[2].name != "X___DEAD___":
                     self.fleet.fleet[2].health += 1.5
-                    print("RepairBot repairs: ", self.fleet.fleet[2].name)
+                    print("_Repair_Bot repairs: ", self.fleet.fleet[2].name)
             self.attack(who, whom)
 
     def attack(self, who, whom):
@@ -387,9 +387,9 @@ class Game:
             print("the enemy is out of energy")
 
         if who.health < 1:
-            who.type = "DEAD"
+            who.type = "X___DEAD___"
         if whom.health < 1:
-            whom.name = "DEAD"
+            whom.name = "X___DEAD___"
 
     def battle_start_for_dinosaurs(self, rounds, players_army, enemies_army):
             print("Time to ENGAGE")
@@ -418,9 +418,9 @@ class Game:
                     print("Thus, this is how the dinosaurs went extinct, and aliens haven't contacted humans since.....")
                     return True
                 print("____________________________Round:", rounds, "___FIGHT!!___________________________________")
-                print("a: attack with: ", dino1.type, " HP:", dino1.health, "     |", "a: attack ", robo1.name, " HP: ", robo1.health)
-                print("b: attack with: ", dino2.type, " HP:", dino2.health, "            |",  "b: attack ", robo2.name, "   HP: ", robo2.health)
-                print("c: attack with: ", dino3.type, " HP:", dino3.health, "     |", "c: attack ", robo3.name, "HP: ", robo3.health)
+                print("a: attack with: ", dino1.type, " HP:", dino1.health, "  |", "a: attack ", robo1.name, " HP: ", robo1.health)
+                print("b: attack with: ", dino2.type, " HP:", dino2.health, "  |",  "b: attack ", robo2.name, "   HP: ", robo2.health)
+                print("c: attack with: ", dino3.type, " HP:", dino3.health, "  |", "c: attack ", robo3.name, "HP: ", robo3.health)
                 print("__________^ YOUR DINOSAURS ^___________________^_THE ENEMY ROBOTS_^________________")
                 print(" ")
                 enemy = input("Who do you to attack with?:")
@@ -453,10 +453,10 @@ class Game:
                 self.mark_death_dinos(whom, who)
 
     def mark_death_dinos(self, whom, who):
-        if who.type == "DEAD" or whom.name == "DEAD":
+        if who.type == "X___DEAD___" or whom.name == "X___DEAD___":
             print("Sorry, but the dead cannot fight")
         else:
-            if whom.name == "RepairBot" and who.health < 100:
+            if whom.name == "_Repair_Bot" and who.health < 100:
                 whom.health += 10
                 print(whom.name, "repairs himself regaining +10 health")
             self.attack_dinos(who, whom)
@@ -470,7 +470,7 @@ class Game:
             print("Which attack do you want to use?")
             attack_choice = input(" ")
             if attack_choice == "a" or attack_choice == "A":
-                if whom.type == "T-Rex":
+                if whom.type == "___T-Rex___":
                     print(whom.type, "attacks", who.name, "with", whom.type, "and crushes,", who.name, "with his jaws!")
                     print("dealing", whom.attack_power, "damage to", who.name)
                     who.health -= whom.attack_power
@@ -517,7 +517,7 @@ class Game:
                         who.health -= (whom.attack_power -15)
                         whom.energy -= 10
             if attack_choice == "b" or attack_choice == "B":
-                if whom.type == "T-Rex":
+                if whom.type == "___T-Rex___":
                     print(whom.type, "leaps into the air on", who.name, "and", whom.type, "and slashes,", who.name, "with his feet_claws.")
                     print("dealing,", whom.attack_power, "damage to", who.name)
                     who.health -= whom.attack_power
@@ -553,9 +553,9 @@ class Game:
             print(" ")
             print("the enemy is out of energy")
         if who.health < 1:
-            who.name = "DEAD"
+            who.name = "X___DEAD___"
         if whom.health < 1:
-            whom.type = "DEAD"
+            whom.type = "X___DEAD___"
 
     def assemble_enemies(self, race_choice):
         if race_choice == "bots" or race_choice == "robots" or race_choice == "Robots" or race_choice == "ROBOTS":
@@ -641,9 +641,21 @@ class BotBattlefield:
         if area == self.area1:
             print("type look and check your surroundings, or continue east by typing e ")
             action1 = input(" ")
+            while action1 != "l" or action1 == "look" or action1 == "e":
+                if action1 == "l" or action1 == "look" or action1 == "e":
+                    break
+                else:
+                    action1 = input("Sorry, I didn't recognize that command.  Directions:  (       E )")
             if action1 == "look" or action1 == "l":
                 print("There's a giant bone barely sticking out of a pool of tar here...")
                 take_club = input("It might make for a very heavy hitting club... take? y or n ")
+                while take_club != "y" or take_club != "n":
+                    if take_club == "y":
+                        break
+                    if take_club == "n":
+                        break
+                    else:
+                        take_club = input("Sorry, please type either y or n ")
                 if take_club == "y":
                     weapon = Weapon()
                     weapon.equip_club(players_army)
@@ -656,7 +668,7 @@ class BotBattlefield:
                             return self.area2
                         else:
                             action2 = input("There's not much else here, might as well go east. (e) ")
-                elif take_club == "n":
+                if take_club == "n":
                     print("the giant bone begins to sink into the tar, then disappears.")
                     action3 = input("Nothing much else in the area, directions available? e ")
                     if action3 == "e" or action3 == "E":
@@ -667,24 +679,24 @@ class BotBattlefield:
                         else:
                             action3 = input("There's not much else here, might as well go east. (e) ")
 
-            elif action1 == "e" or action1 == "E":
+            if action1 == "e" or action1 == "E":
                 print("You continue eastward.")
                 return self.area2
             else:
                 direction = input("Directions: e ")
                 if direction == "e" or direction == "E":
                     return self.area2a
-                while direction != "e" or "E":
-                    if direction == "e" or "E":
+                while direction != "e" or direction != "E":
+                    if direction == "e" or direction != "E":
                         return self.area2a
                     else:
                         direction = input("There's nothing much here, you might as well go east..")
 
-        else:
+        if area == self.area1a:
             direction = input("Directions: e ")
             if direction == "e" or direction == "E":
                 return self.area2a
-            while direction != "e" or "E":
+            while direction != "e" or direction != "E":
                 if direction == "e" or direction == "E":
                     return self.area2a
                 else:
@@ -697,28 +709,28 @@ class BotBattlefield:
         print(self.area2)
         if self.area2b == area:
             for units in players_army.fleet:
-                if units.name == "RepairBot":
+                if units.name == "_Repair_Bot":
                     print("You can repair your robot party for +30 health and +100 power_level for the cost of -100 from", units.name, "power_level.")
-                    print("Or, you can use -20 of RepairBot's power_level and the cost of one of your party members lives..")
-                    print("And using parts from your sacrificed robot of choice, RepairBot can give the remainder of that sacrificed Bot's")
+                    print("Or, you can use -20 of _Repair_Bot's power_level and the cost of one of your party members lives..")
+                    print("And using parts from your sacrificed robot of choice, _Repair_Bot can give the remainder of that sacrificed Bot's")
                     print("attack power, energy and +50 HP to any surviving bot of your choice.")
-                    fled = input("(a) Sacrifice a bot? Or (b) Heal the party at the cost of RepairBot's energy? or (c) return to battle. ")
-                    while fled != "a" or "b" or "c":
+                    fled = input("(a) Sacrifice a bot? Or (b) Heal the party at the cost of _Repair_Bot's energy? or (c) return to battle. ")
+                    while fled != "a" or fled != "b" or fled != "c":
                         if fled == "a" or fled == "b" or fled == "c":
                             break
                         else:
                             fled = input("Please use a, b, or c for your answer.")
                     if fled == "a" or fled == "A":
                         for robos in players_army.fleet:
-                            if robos.name == "RepairBot":
+                            if robos.name == "_Repair_Bot":
                                 robos.power_level -= 20
                         for unit in players_army.fleet:
-                            if unit.health > 0 and unit.name != "RepairBot":
+                            if unit.health > 0 and unit.name != "_Repair_Bot":
                                 print(" ")
                                 print(unit.name)
                                 sacrifice = input("Would you like to sacrifice this bot? y or n")
                                 if sacrifice == "y" or sacrifice == "Y":
-                                    unit.name = "DEAD"
+                                    unit.name = "X___DEAD___"
                                     unit.health -= 200
                                     sacrificer_ap = unit.attack_power
                                     sacrificer_pl = unit.power_level
@@ -727,7 +739,7 @@ class BotBattlefield:
                                     continue
                                 while sacrifice != "y" or sacrifice != "n":
                                     if sacrifice == "y":
-                                        unit.name = "DEAD"
+                                        unit.name = "X___DEAD___"
                                         unit.health -= 200
                                         sacrificer_ap = unit.attack_power
                                         sacrificer_pl = unit.power_level
@@ -738,11 +750,11 @@ class BotBattlefield:
                                         sacrifice = input("Would you like to sacrifice this bot? y or n")
                         print("Which bot do you want to re-build to give more power?")
                         for left_overs in players_army.fleet:
-                            if left_overs.name != "DEAD":
+                            if left_overs.name != "X___DEAD___":
                                 print(" ")
                                 print(left_overs.name)
                                 re_build = input("Would you like to rebuild this bot? y or n")
-                                if re_build == "y" or sacrifice == "Y":
+                                if re_build == "y" or re_build == "Y":
                                     left_overs.attack_power += sacrificer_ap
                                     left_overs.power_level += sacrificer_pl
                                     left_overs.health += 50
@@ -752,7 +764,7 @@ class BotBattlefield:
                                     print("If you run out of options, you will just have to continue back to battle.")
                                     continue
                                 while re_build != "y" or re_build != "Y" or re_build != "N" or re_build != "n":
-                                    if re_build == "y" or sacrifice == "Y":
+                                    if re_build == "y" or re_build == "Y":
                                         left_overs.attack_power += sacrificer_ap
                                         left_overs.power_level += sacrificer_pl
                                         left_overs.health += 50
@@ -765,7 +777,7 @@ class BotBattlefield:
                                         re_build = input("Would you like to rebuild this bot? y or n")
                     if fled == "b" or fled == "B":
                         for members in players_army.fleet:
-                            if members.name == "RepairBot":
+                            if members.name == "_Repair_Bot":
                                 if members.power_level < 100:
                                     print("Sorry, but,", members.name, "doesn't have enough power_level for this... PL: ", members.power_level)
                                     return self.area2a
@@ -797,7 +809,9 @@ class BotBattlefield:
                         robo1.health += 50
                         print(robo1.name, "feels a surge of power!")
                         print("You better get moving! Commander says hurry up!")
-                        move = input("Well, nothing else here, might as well go east toward the battle.. (e)")
+                        print(" ")
+                        print("         Directions (W   and   E)")
+                        move = input("Well, nothing else here, might as well go east toward the battle..")
                         if move == "e" or move == "E":
                             return self.area3
                         if move == "w" or move == "W":
@@ -877,6 +891,11 @@ class BotBattlefield:
                             return self.area3
 
             if action3 == "w" or action3 == "W" or action3 == "west":
+                for units in players_army.fleet:
+                    if units.name == "_Tank360_R_" and units.weapon != Weapon().weapon_tank_list[0]:
+                        return self.area1
+                    elif units.name == "_Tank360_R_" and units.weapon == Weapon().weapon_tank_list[0]:
+                        return self.area1a
                 return self.area1
             elif action3 == "e" or action3 == "E" or action3 == "east":
                 return self.area3
@@ -885,26 +904,29 @@ class BotBattlefield:
                 if move2 == "e" or move2 == "E":
                     return self.area3
                 if move2 == "w" or move2 == "W":
-                    return self.area1
+                    return self.area1a
                 while move2 != "e" or move2 != "E" or move2 != "w" or move2 != "W":
                     move2 = input("Nothing else here, might as well go east to the battle. (e) ")
                     if move2 == "e" or move2 == "E":
                         return self.area3
                     if move2 == "w" or move2 == "W":
-                        return self.area1
+                        return self.area1a
 
         elif self.area2a == area:
-            action4 = input("There's nothing special here, might as well go east.")
+            action4 = input(" ")
             if action4 == "e" or action4 == "E":
                 return self.area3
             if action4 == "w" or action4 == "W":
                 return self.area1a
             while action4 != "e" or action4 != "E" or action4 != "w" or action4 != "W":
-                action4 = input("Still nothing here, you might as well go east (e) ")
-                if action4 == "e" or "E":
+                if action4 == "l" or action4 == "look":
+                    print("Nothing out of the ordinary here...")
+                if action4 == "e" or action4 == "E":
                     return self.area3
                 if action4 == "w" or action4 == "W":
                     return self.area1a
+                else:
+                    action4 = input(" Directions (W  and  E)     ")
 
     def begin_journey3(self, area, player_army):
         print(area)
@@ -919,7 +941,7 @@ class DinoBattlefield:
 
     def begin_dino_journey(self, area):
         print(area)
-        print("The T-Rex munches on some small sheep, the Triceratops seems unafraid, with the Pterodactyl flying high in the sky.")
+        print("The ___T-Rex___ munches on some small sheep, the Triceratops seems unafraid, with the Pterodactyl flying high in the sky.")
         print("All the sudden, robots from the west come toward you and begin to battle!")
         return "battle"
 
@@ -927,23 +949,37 @@ class Weapon:
     def __init__(self):
         self.weapon = ""
         self.weapon_list = ["laser", "dino_blaster03", "gatling gun"]
+        self.weapon_tank_list = ["giant bone maul"]
 
     def equip_club(self, players_army):
         for units in players_army.fleet:
-            if units.name == "Tank360R" and units.weapon != "giant bone maul":
-                print("Only Tank360R is interested in using this...")
+            if units.name == "_Tank360_R_" and units.weapon != "giant bone maul":
+                print("Only _Tank360_R_ is interested in using this...")
                 equip_choice = input("Would you like to equip him with it, instead of his current weapon? y or n ")
                 if equip_choice == "y":
-                    units.weapon = "giant bone maul"
+                    weapon = Weapon().weapon_tank_list[0]
+                    units.weapon = weapon
                     units.attack_power += 5
                     self.weapon = "giant bone maul"
-                    print("You equip a giant bone maul with Tank360R. His attack power is now:",
+                    print("You equip the", units.weapon, "with _Tank360_R_. His attack power is now:",
                           units.attack_power, "+5")
                     break
                 if equip_choice == "n":
                     break
-            else:
-                break
+                while equip_choice != "y" or equip_choice != "n":
+                    if equip_choice == "y":
+                        units.weapon = "giant bone maul"
+                        units.attack_power += 5
+                        weapon = Weapon().weapon_tank_list[0]
+                        self.weapon = weapon
+                        print(" ")
+                        print("You equip the", weapon, " with _Tank360_R_. His attack power is now:",
+                              units.attack_power, "+5")
+                        break
+                    if equip_choice == "n":
+                        break
+                    else:
+                        equip_choice = input("Press y if you want to equip or if not then press n")
 
         print("There's nothing special here...")
 
