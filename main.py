@@ -37,8 +37,13 @@ if __name__ == '__main__':
         next_move = [False, battlefield.area3]
         while not the_game.end and players_army.race == "Robots":
             next_move = the_game.battle_start(rounds, players_army, enemies_army)
-            area = next_move[1]
-            while area == battlefield.area1 or area == battlefield.area1a or area == battlefield.area2 or area == battlefield.area2a or next_move[1] == battlefield.area2b or area == "battle":
+            if next_move == [False, battlefield.area2b]:
+                area = battlefield.area2b
+            if next_move == True:
+                the_game.end = next_move
+                break
+
+            while area == battlefield.area1 or area == battlefield.area1a or area == battlefield.area2 or area == battlefield.area2a or next_move[1] == battlefield.area2b or area == battlefield.area_end:
                 if area == battlefield.area1:
                     area = battlefield.begin_journey(area, players_army)
 
@@ -52,7 +57,8 @@ if __name__ == '__main__':
                     area = battlefield.begin_journey2(area, players_army)
                 if area == battlefield.area3:
                     area = battlefield.begin_journey3(area, players_army)
-                if area == "battle":
+                if area == battlefield.area_end:
+                    the_game.end = True
                     break
 
 

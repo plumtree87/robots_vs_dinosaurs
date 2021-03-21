@@ -273,13 +273,15 @@ class Game:
                 while robo1.health > 0 or robo2.health > 0 or robo3.health > 0:
                     if dino1.health < 1 and dino2.health < 1 and dino3.health < 1:
                         print(" ")
-                        print("OUTSTANDING!! YOU WIN!! Despite the great disadvantage of size... your race overcame...")
+                        print("OUTSTANDING!! YOU WIN!! Despite the great disadvantage of size, your race overcame...")
                         print(
-                            "and rewrote history, which isn't true in my reality, thus you are from an alternate reality.")
-                        print("and the reality in which your story played, is merely a glimpse into what could have been.")
-                        print("If your reality, was our reality, but alas...")
+                            "and although you won the battle, your entire race was later overcome by hordes of more dinos.")
                         print(
-                            "What your alternate reality in the future; this reality calls earth in english, you now call home.")
+                            "The few left of your race fled the planet, never to return, instead looking for a new home.")
+                        print(
+                            "Though, you did basically cause the extinction of the dinosaurs, you fled without realizing it.")
+                        print(
+                            "Thus, that is what really happen to the dinosaurs, and why aliens haven't been contacted since.")
                         return True
                     elif dino1.health > 0 or dino2.health > 0 or dino3.health > 0:
                         break
@@ -387,14 +389,12 @@ class Game:
                     print("Perhaps if your race wasn't only 1/2 foot tall, your 10ft gundam-style robots could have stood a chance.")
                     print("YOU LOSE~")
                     return True
-
-                elif robo1.health < 1 and robo2.health < 1 and robo3.health < 1:
-                    print(" ")
-                    print("OUTSTANDING!! YOU WIN!! Despite the great disadvantage of size, your race overcame...")
-                    print("and although you won the battle, your entire race was later overcome by hordes of more dinos.")
-                    print("The few left of your race fled the planet, never to return, instead looking for a new home.")
-                    print("Though, you did basically cause the extinction of the dinosaurs, you fled without realizing it.")
-                    print("Thus, that is what really happen to the dinosaurs, and why aliens haven't been contacted since.")
+                if robo1.health < 1 and robo2.health < 1 and robo3.health < 1:
+                    print("YOU WIN! ")
+                    print("Using your superior technology and intelligence, you destroyed the dinosaurs from off the face of the planet.")
+                    print("Sadly, later... a homosapien came to visit your race on earth with greetings, and infected you all")
+                    print("with a infections disease, that although they themselves were immune to, wiped out your entire race.")
+                    print("Thus, this is how the dinosaurs went extinct, and aliens haven't contacted humans since.....")
                     return True
                 print("____________________________Round:", rounds, "___FIGHT!!___________________________________")
                 print("a: attack with: ", dino1.type, " HP:", dino1.health, "     |", "a: attack ", robo1.name, " HP: ", robo1.health)
@@ -435,7 +435,7 @@ class Game:
         if who.type == "DEAD" or whom.name == "DEAD":
             print("Sorry, but the dead cannot fight")
         else:
-            if whom.name == "RepairBot" and who.health < 150:
+            if whom.name == "RepairBot" and who.health < 100:
                 whom.health += 10
                 print(whom.name, "repairs himself regaining +10 health")
             self.attack_dinos(who, whom)
@@ -513,6 +513,7 @@ class Game:
         elif p_rannum < 3 and whom.energy > 0:
             print(" ")
             print("You stumble before you can even decide on what move to use...")
+            print("**    **    **    ** Stumble**    ** Stumble **    **    **    *")
             print("[roll:", p_rannum, "success 3]")
             print(whom.type, "attacks, but misses", who.name)
             whom.energy -= 10
@@ -609,6 +610,7 @@ class BotBattlefield:
         self.area2a = "You are past the center of the valley, enemies in the distance to the east..."
         self.area2b = "You are just past the center of the valley, dinosaurs near to the east..."
         self.area3 = "You are in enemy territory, enemies in sight!"
+        self.area_end = "END"
 
     def begin_journey(self, area, players_army):
         print(" ")
@@ -662,7 +664,7 @@ class BotBattlefield:
             if direction == "e" or direction == "E":
                 return self.area2a
             while direction != "e" or "E":
-                if direction == "e" or "E":
+                if direction == "e" or direction == "E":
                     return self.area2a
                 else:
                     direction = input("There's nothing here, you might as well go east..")
@@ -688,7 +690,7 @@ class BotBattlefield:
                     if fled == "a" or fled == "A":
                         for robos in players_army.fleet:
                             if robos.name == "RepairBot":
-                                robos.power_level -=20
+                                robos.power_level -= 20
                         for unit in players_army.fleet:
                             if unit.health > 0 and unit.name != "RepairBot":
                                 print(" ")
@@ -740,7 +742,7 @@ class BotBattlefield:
                                         continue
                                     else:
                                         re_build = input("Would you like to rebuild this bot? y or n")
-                    if fled == "b" or "B":
+                    if fled == "b" or fled == "B":
                         for members in players_army.fleet:
                             if members.name == "RepairBot":
                                 if members.power_level < 100:
