@@ -46,18 +46,17 @@ class Dinosaurs:
     def enemy_dino(self, abc):
         if abc == "a" or abc == "A" or abc == "(a)" or abc == "(B)":
             self.type = "Triceratops"
-            self.health += 100
+            self.health += 25
             self.energy += 200
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
             self.type = "___T-Rex___"
-            self.health += 15
-            self.attack_power += 15
+            self.health -= 20
+            self.attack_power += 20
             self.energy += 200
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
             self.type = "Pterodactyl"
-            self.attack_power += 10
+            self.attack_power += 15
             self.energy += 200
-            self.health += 20
 
 
 class Robots:
@@ -167,19 +166,19 @@ class Robots:
     def enemy_bot(self, abc):
         if abc == "a" or abc == "A" or abc == "(a)" or abc == "(B)":
             self.name = "_Tank360_R_"
-            self.health += 80
+            self.health += 30
             self.attack_power += 10
             self.power_level += 50
             self.weapon = "Sword and shield"
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
             self.name = "_DPS_9_9_R_"
-            self.health += 30
+            self.health += 10
             self.attack_power += 35
             self.weapon = "Rail-gun"
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
             self.name = "_Repair_Bot"
             self.weapon = "monkey wrench"
-            self.health += 30
+            self.health += 20
             self.attack_power += 10
         else:
             self.name = "basic bot"
