@@ -4,7 +4,7 @@ import random
 class Dinosaurs:
     def __init__(self):
         self.type = ''
-        self.health = 100
+        self.health = 80
         self.energy = 250
         self.attack_power = 15
         self.attack1 = ""
