@@ -168,19 +168,19 @@ class Robots:
         if abc == "a" or abc == "A" or abc == "(a)" or abc == "(B)":
             self.name = "_Tank360_R_"
             self.health += 80
-            self.attack_power += 5
+            self.attack_power += 10
             self.power_level += 50
             self.weapon = "Sword and shield"
         elif abc == "b" or abc == "B" or abc == "(B)" or abc == "(b)":
             self.name = "_DPS_9_9_R_"
-            self.health -= 20
+            self.health += 30
             self.attack_power += 35
             self.weapon = "Rail-gun"
         elif abc == "c" or abc == "C" or abc == "(C)" or abc == "(c)":
             self.name = "_Repair_Bot"
             self.weapon = "monkey wrench"
-            self.health += 20
-            self.attack_power += 5
+            self.health += 30
+            self.attack_power += 10
         else:
             self.name = "basic bot"
 
@@ -289,7 +289,7 @@ class Game:
                         print("The Commander turns the ship away from earth, and sets off to another planet to make home.")
                         print("One with far less ferocious beasts... today on earth, no one is aware of this past encounter.")
                         print(
-                            "Perhaps if your race wasn't only 1/2 foot tall, your 10ft gundam-style robots could have stood a chance.")
+                            "Perhaps if your race wasn't only 1/2 foot tall, your 12ft tall robots could have stood a chance.")
                         print("YOU LOSE~")
                         return True
                     elif robo1.health > 0 or robo2.health > 0 or robo3.health > 0:
@@ -297,15 +297,15 @@ class Game:
                 while robo1.health > 0 or robo2.health > 0 or robo3.health > 0:
                     if dino1.health < 1 and dino2.health < 1 and dino3.health < 1:
                         print(" ")
-                        print("OUTSTANDING!! YOU WIN!! Despite the great disadvantage of size, your race overcame...")
+                        print("YOU WIN! ")
                         print(
-                            "and although you won the battle, your entire race was later overcome by hordes of more dinos.")
+                            "Using your superior technology and intelligence, you destroyed the dinosaurs from off the face of the planet.")
                         print(
-                            "The few left of your race fled the planet, never to return, instead looking for a new home.")
+                            "Sadly, later... a homosapien came to visit your race on earth with greetings, and infected you all")
                         print(
-                            "Though, you did basically cause the extinction of the dinosaurs, you fled without realizing it.")
+                            "with a infections disease, that although they themselves were immune to, wiped out your entire race.")
                         print(
-                            "Thus, that is what really happen to the dinosaurs, and why aliens haven't been contacted since.")
+                            "Thus, this is how the dinosaurs went extinct, and aliens haven't contacted humans since.....")
                         return True
                     elif dino1.health > 0 or dino2.health > 0 or dino3.health > 0:
                         break
@@ -407,23 +407,19 @@ class Game:
             while robo1.health > 1 or robo2.health > 1 or robo3.health > 1 and dino1.health > 1 or dino2.health > 1 or dino3.health > 1:
                 if dino1.health < 1 and dino2.health < 1 and dino3.health < 1:
                     print(" ")
-                    print("The Dinosaurs destroy your machines, and having no mor resources for battle..")
-                    print("The Commander turns the ship away from earth, and sets off to another planet to make home.")
-                    print("One with far less ferocious beasts...")
-                    print("Perhaps if your race wasn't only 1/2 foot tall, your 10ft gundam-style robots could have stood a chance.")
+                    print("The robots destroyed you, and that's all you remember about that...")
                     print("YOU LOSE~")
                     return True
                 if robo1.health < 1 and robo2.health < 1 and robo3.health < 1:
-                    print("YOU WIN! ")
-                    print("Using your superior technology and intelligence, you destroyed the dinosaurs from off the face of the planet.")
-                    print("Sadly, later... a homosapien came to visit your race on earth with greetings, and infected you all")
-                    print("with a infections disease, that although they themselves were immune to, wiped out your entire race.")
-                    print("Thus, this is how the dinosaurs went extinct, and aliens haven't contacted humans since.....")
+                    print("As Dinosaurs you rule the earth and none can stop you. Those pesky alien robots won't be ")
+                    print("coming back again. You once again enjoy your leisurely lifestyles of eating grass, or for T-Rex")
+                    print("toyingly hunting your prey...")
+                    print("YOU WIN!")
                     return True
                 print("____________________________Round:", rounds, "___FIGHT!!___________________________________")
                 print("a: attack with: ", dino1.type, " HP:", dino1.health, "  |", "a: attack ", robo1.name, " HP: ", robo1.health)
-                print("b: attack with: ", dino2.type, " HP:", dino2.health, "  |",  "b: attack ", robo2.name, "   HP: ", robo2.health)
-                print("c: attack with: ", dino3.type, " HP:", dino3.health, "  |", "c: attack ", robo3.name, "HP: ", robo3.health)
+                print("b: attack with: ", dino2.type, " HP:", dino2.health, "   |",  "b: attack ", robo2.name, " HP: ", robo2.health)
+                print("c: attack with: ", dino3.type, " HP:", dino3.health, "  |", "c: attack ", robo3.name, " HP: ", robo3.health)
                 print("__________^ YOUR DINOSAURS ^___________________^_THE ENEMY ROBOTS_^________________")
                 print(" ")
                 enemy = input("Who do you to attack with?:")
@@ -526,18 +522,18 @@ class Game:
                     who.health -= whom.attack_power
                     whom.energy - 10
                 if whom.type == "Triceratops":
-                    print(whom.type, "slams", who.name, "with a", whom.attack1, "dealing", whom.attack_power, "damage.")
+                    print(whom.type, "slams", who.name, "with a", whom.attack2, "dealing", whom.attack_power, "damage.")
                     who.health -= whom.attack_power
                     whom.energy -= 10
                 if whom.type == "Pterodactyl":
                     print(whom.type, "flies high up into the sky, then folds his wings and free-falls quickly to the earth stabbing", who.name, "with his beak!")
-                    print("dealing", whom.attack_power +5, "damage")
-                    who.health -= (whom.attack_power +5)
+                    print("dealing", whom.attack_power -5, "damage")
+                    who.health -= (whom.attack_power -5)
                     whom.energy -= 10
         elif p_rannum < 3 and whom.energy > 0:
             print(" ")
             print("You stumble before you can even decide on what move to use...")
-            print("**    **    **    ** Stumble**    ** Stumble **    **    **    *")
+            print("**    **    **    ** You  **  **  Stumble **    **    **    *")
             print("[roll:", p_rannum, "success 3]")
             print(whom.type, "attacks, but misses", who.name)
             whom.energy -= 10

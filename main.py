@@ -12,6 +12,7 @@ if __name__ == '__main__':
         battlefield.begin_dino_journey(area)
         rounds = the_game.rounds
         the_game.battle_start_for_dinosaurs(rounds, players_army, enemies_army)
+        print("Good Game")
 
     elif the_game.player_race == "Robots":
         players_army = the_game.assemble_army(race_choice)
