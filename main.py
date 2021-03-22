@@ -64,7 +64,6 @@ if __name__ == '__main__':
                     the_game.end = True
                     break
 
-
         print("GOOD GAME")
 
 

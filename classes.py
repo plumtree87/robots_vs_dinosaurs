@@ -458,6 +458,7 @@ class Game:
             if whom.name == "_Repair_Bot" and who.health < 100:
                 whom.health += 10
                 print(whom.name, "repairs himself regaining +10 health")
+                print(" ")
             self.attack_dinos(who, whom)
 
     def attack_dinos(self, whom, who):
@@ -581,6 +582,8 @@ class Game:
             for members in dinosaurs:
                 print(members.type)
             print(" ")
+            print("*your headset squeaks*")
+            print("**KhHHHHhHh** THIS IS SHIP COMMANDER. GO EAST AND KILL THOSE DINOSAURS SO WE CAN MAKE THIS PLANET HABITABLE!")
             return enemies_army
 
         elif race_choice == "dinosaurs" or race_choice == "DINOSAURS" or race_choice == "dinos" or race_choice == "Dinosaurs" or race_choice == "Dinos":
